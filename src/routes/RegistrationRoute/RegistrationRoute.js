@@ -16,7 +16,8 @@ class RegistrationRoute extends Component {
 
   render() {
     return (
-      <section>
+      <section className='registration'>
+        <div>
         <p>
           Practice learning a language with the spaced repetition revision technique.
         </p>
@@ -24,6 +25,7 @@ class RegistrationRoute extends Component {
         <RegistrationForm
           onRegistrationSuccess={this.handleRegistrationSuccess}
         />
+        </div>
       </section>
     );
   }

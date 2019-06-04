@@ -77,7 +77,12 @@ main {
     justify-content: center;
     padding: 30px;
   }
+  .login{ 
+    text-align: center;
+    margin-top: 100px;
+  }
   .LoginForm {
+    margin: auto;
     border-radius: 5px;
     border: 1px solid black;
     width: 100%;
@@ -128,6 +133,10 @@ main {
   /* End Utility Classes */
   
   /* Registration Styles */
+  .registration {
+    text-align: center;
+    margin-top: 100px;
+  }
   .registration-grid p {
     font-size: 20px;
   }
@@ -144,6 +153,7 @@ main {
     padding: 30px;
   }
   .RegistrationForm {
+    margin: auto;
     border-radius: 5px;
     border: 1px solid black;
     width: 100%;
