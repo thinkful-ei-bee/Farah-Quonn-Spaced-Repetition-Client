@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
 import UserContext from '../../contexts/UserContext'
 import './Header.css'
+import '../App/App.css'
 
 class Header extends Component {
   static contextType = UserContext
@@ -17,7 +18,7 @@ class Header extends Component {
         <span>
           {this.context.user.name}
         </span>
-        <nav>
+        <nav className="header-menu-link">
           <Link
             onClick={this.handleLogoutClick}
             to='/login'>
@@ -30,7 +31,7 @@ class Header extends Component {
 
   renderLoginLink() {
     return (
-      <nav>
+      <nav className="header-menu-link">
         <Link to='/login'>Login</Link>
         {' '}
         <Link to='/register'>Sign up</Link>
@@ -40,15 +41,22 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
-        <h1>
-          <Link to='/'>
-            Spaced repetition
+      <header className="header header-grid">
+        <div className="logo-box">
+          <h1>
+            <Link to='/' id="logo">
+              Spaced Repetition
           </Link>
-        </h1>
+          </h1>
+        </div>
+        <div className="header-menu-box">
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
+          <Link to='/learn'>
+              Learn
+          </Link>
+        </div>
       </header>
     );
   }
