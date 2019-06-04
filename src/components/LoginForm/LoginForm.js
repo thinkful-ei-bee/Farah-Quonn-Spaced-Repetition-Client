@@ -1,65 +1,87 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import TokenService from '../../services/token-service'
+import { Input, Label } from '../Form/Form'
+import AuthApiService from '../../services/auth-api-service'
 import UserContext from '../../contexts/UserContext'
-import './Header.css'
-import '../App/App.css'
+import Button from '../Button/Button'
 
-class Header extends Component {
+class LoginForm extends Component {
+  static defaultProps = {
+    onLoginSuccess: () => { }
+  }
+
   static contextType = UserContext
 
-  handleLogoutClick = () => {
-    this.context.processLogout()
+  state = { error: null }
+
+  firstInput = React.createRef()
+
+  handleSubmit = ev => {
+    ev.preventDefault()
+    const { username, password } = ev.target
+
+    this.setState({ error: null })
+
+    AuthApiService.postLogin({
+      username: username.value,
+      password: password.value,
+    })
+      .then(res => {
+        username.value = ''
+        password.value = ''
+        this.context.processLogin(res.authToken)
+        this.props.onLoginSuccess()
+      })
+      .catch(res => {
+        this.setState({ error: res.error })
+      })
   }
 
-  renderLogoutLink() {
-    return (
-      <div>
-        <span>
-          {this.context.user.name}
-        </span>
-        <nav className="header-menu-link">
-          <Link
-            onClick={this.handleLogoutClick}
-            to='/login'>
-            Logout
-          </Link>
-        </nav>
-      </div>
-    )
-  }
-
-  renderLoginLink() {
-    return (
-      <nav className="header-menu-link">
-        <Link to='/login'>Login</Link>
-        {' '}
-        <Link to='/register'>Sign up</Link>
-      </nav>
-    )
+  componentDidMount() {
+    this.firstInput.current.focus()
   }
 
   render() {
+    const { error } = this.state
     return (
-      <header className="header header-grid">
-        <div className="logo-box">
-          <h1>
-            <Link to='/' id="logo">
-              Spaced Repetition
-          </Link>
-          </h1>
+      <form
+        className='LoginForm'
+        onSubmit={this.handleSubmit}
+      >
+        <div role='alert'>
+          {error && <p>{error}</p>}
         </div>
-        <div className="header-menu-box">
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
-          <Link to='/learn'>
-              Learn
-          </Link>
+        <div>
+          <Label htmlFor='login-username-input' className="form-label">
+            Username
+          </Label>
+          <Input
+            className="form-input"
+            ref={this.firstInput}
+            id='login-username-input'
+            name='username'
+            placeholder="Enter username"
+            required
+          />
         </div>
-      </header>
-    );
+        <div>
+          <Label htmlFor='login-password-input' className="form-label">
+            Password
+          </Label>
+          <Input
+            className="form-input"
+            id='login-password-input'
+            name='password'
+            type='password'
+            placeholder="Enter Password"
+            required
+          />
+        </div>
+        <Button type='submit' className="btn">
+          Login
+        </Button>
+      </form>
+    )
   }
 }
 
-export default Header
+export default LoginForm

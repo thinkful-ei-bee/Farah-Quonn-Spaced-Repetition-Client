@@ -1,36 +1,36 @@
 import React, { Component } from 'react'
-import LoginForm from '../../components/LoginForm/LoginForm'
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm'
 import "../../components/App/App.css"
 
-class LoginRoute extends Component {
+class RegistrationRoute extends Component {
   static defaultProps = {
-    location: {},
     history: {
-      push: () => { },
+      push: () => {},
     },
   }
 
-  handleLoginSuccess = () => {
-    const { location, history } = this.props
-    const destination = (location.state || {}).from || '/'
-    history.push(destination)
+  handleRegistrationSuccess = () => {
+    const { history } = this.props
+    history.push('/login')
   }
 
   render() {
     return (
-      <section className="login-grid">
-        <div className="login-grid-item side-div"></div>
-        <div className="login-grid-item login-content">
-          <h2>Login</h2>
-          <LoginForm
-            className="LoginForm"
-            onLoginSuccess={this.handleLoginSuccess}
-          />
+      <section className="registration-grid">
+        <div className="registration-grid-item side-div"></div>
+          <div className="registration-grid-item registration-content">
+          <p>
+            Practice learning a language with the spaced repetition revision technique.
+          </p>
+          <h2>Sign up</h2>
+        <RegistrationForm
+          onRegistrationSuccess={this.handleRegistrationSuccess}
+        />
         </div>
-        <div className="login-grid-item side-div"></div>
+        <div className="registration-grid-item side-div"></div>
       </section>
     );
   }
 }
 
-export default LoginRoute
+export default RegistrationRoute

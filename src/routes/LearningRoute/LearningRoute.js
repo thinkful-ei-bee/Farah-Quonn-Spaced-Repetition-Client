@@ -3,25 +3,17 @@ import LanguageService from '../../services/language-service'
 import { Input, Label } from '../../components/Form/Form'
 import Button from '../../components/Button/Button'
 
-class LearningRoute extends Component {
-  state = {
-    nextWord: '',
-    haveSubmittedAnswer: null,
-    lastWord: '',
-    wordCorrectCount: null,
-    wordIncorrectCount: null,
-    lastWordCorrectCount: null,
-    lastWordIncorrectCount: null,
-    totalScore: null,
-    guess: '',
-    correctGuess: 0,
-    isCorrect: null,
-    translatedWord: true,
-  }
 
+class LearningRoute extends Component {
+    state = {
+      guess_input:'',
+      nextWord: '',
+    }
+  
   componentDidMount() {
     LanguageService.getLanguageHead()
       .then(response => {
+        console.log(response)
         this.setState({
           nextWord: response.nextWord,
           lastWord: response.nextWord,
@@ -34,161 +26,82 @@ class LearningRoute extends Component {
         })
       })
   }
-  
-  handleSubmitAnswer(event) {
-    event.preventDefault()
+
+  handleChange = (e) => {
     this.setState({
-      translatedWord: false,
-    })
+      [e.target.name]: e.target.value
+    });
+  }
 
-    if (this.state.isCorrect !== null) {
+  handleSubmit = (e) =>{
+    e.preventDefault()
+ 
+  //keeps track of word user just finished submitting
+  this.setState({preWord: this.state.nextWord});
+
+  LanguageService.postGuess(this.state.guess_input)
+  .then(res => {
+    console.log(res)
+    for(const [key,value] of Object.entries(res)){
       this.setState({
-        haveSubmittedAnswer: null,
-        lastWord: this.state.nextWord,
-        guess: '',
-        correctGuess: 0,
-        isCorrect: null,
+        [key]:value,
       })
-
-      return;
     }
-    this.postGuess();
-}
-
-  handleNextWordButton = (e) => {
-    e.preventDefault();
-    this.setState({ 
-      translatedWord: true,
-      guess: ''
-    })
+  })
   }
 
 
-postGuess() {
-  LanguageService.postGuess(this.state.guess)
-      .then(response => {
-        console.log(response)
-        console.log(this.state.translatedWord)
-        if (response.isCorrect) {
-          
-          this.setState({
-            nextWord: response.nextWord,
-            haveSubmittedAnswer: response.answer,
-            lastWordCorrectCount: this.state.wordCorrectCount + 1,
-            lastWordIncorrectCount: this.state.wordIncorrectCount,
-            wordCorrectCount: response.wordCorrectCount,
-            wordIncorrectCount: response.wordIncorrectCount,
-            totalScore: response.totalScore,
-            correctGuess: true,
-            isCorrect: response.isCorrect,
-          })
-          return;
-        }
-        else {
-          this.setState({
-            nextWord: response.nextWord,
-            haveSubmittedAnswer: response.answer,
-            lastWordCorrectCount: this.state.wordCorrectCount,
-            lastWordIncorrectCount: this.state.wordIncorrectCount + 1,
-            wordCorrectCount: response.wordCorrectCount,
-            wordIncorrectCount: response.wordIncorrectCount,
-            totalScore: response.totalScore,
-            correctGuess: false,
-            isCorrect: response.isCorrect,
-          })
-          return;
-        }
-      })
-  }
-  
-  handleChangeAnswer = (guess) => {
-    this.setState({ guess: guess.target.value })
+  handleNext=(e)=>{
+    e.preventDefault()
+    console.log('here')
+    console.log(this.state)
+    this.setState({...this.state, answer:null})
   }
 
-  displayWord() {
-      const word =
-      <>
-        <h2 className="translateWord">Translate the word:</h2>
-        <span>{this.state.lastWord}</span>
-      </>
-      return word;
-  }
-  displayFeedbackMessage() { 
-      if (this.state.isCorrect === true) { return <h2>You were correct! :D</h2>}
-      if (this.state.isCorrect === false) { return <h2>Good try, but not quite right :(</h2> }
-      if (this.state.isCorrect === null) { return ''}
-  }
-  displayHeaderMessage() {
-    let headerMessage = (this.state.translatedWord) ?
-      this.displayWord() :
-      <div className="DisplayFeedback">
-        {this.displayFeedbackMessage()}
-        <p>The correct translation for {this.state.nextWord} was {this.state.correctAnswer} and you chose {this.state.guess}!</p>
-      </div>
-      
 
-    return headerMessage;
-  }
-
-  displayForm() {
-    return (
-      <form className='main_form' onSubmit={(event) => this.handleSubmitAnswer(event)}>
-      <Label htmlFor='learn-guess-input' className="translation-label">
-        What's the translation for this word?
-      </Label>
-      <Input
-        className="translation-input"
-        ref={this.firstInput}
-        id='learn-guess-input'
-        name='learn-guess-input'
-        value={this.state.guess}
-        onChange={e => this.handleChangeAnswer(e)}
-        required
-      />
-      <Button type='submit' className="btn">
-        Submit your answer
-      </Button>
-    </form>
-    )
-  }
-
-  toggleButtonsAndForm(){
-    let displayForm = 
-    (this.state.translatedWord === true) ? 
-      this.displayForm()
-    : <Button type="button" className="btn" onClick={this.handleNextWordButton}>
-        Try another word!
-      </Button> ;
-
-    return displayForm;
-  }
 
   render() {
+    // console.log(this.context);
+    // console.log(this.props);
+    // console.log(this.state);
+
+    //when there is an answer
+    let message = null;
+    //when the user has not entered anything
+    let displayForm = null;
+
+    if(this.state.isCorrect) {
+      message = <><h2>You were correct! :D</h2></>;
+      displayForm = <><button type='click' onClick={this.handleNext.bind(this)}>Try another word!</button></>
+    } else {
+      message = <><h2>Good try, but not quite right :(</h2>
+      <p>{`The correct translation for ${this.state.preWord} was ${this.state.answer} and you chose ${this.state.guess_input}!`}</p></>;
+      //if the user entered the wrong word
+      displayForm = <><button type='click' onClick={this.handleNext.bind(this)}>Try another word!</button></>
+    } 
+
+    //for if there is no answer
+    if (!this.state.answer) {
+      message = <><h2>Translate the word:</h2> <span>{this.state.nextWord}</span></>;
+      displayForm = <><form onSubmit={this.handleSubmit.bind(this)}>
+        <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
+        <input type='text' id='learn-guess-input' name='guess_input' onChange={this.handleChange.bind(this)} required />
+        <button type='submit'>Submit your answer</button>
+      </form></>
+    }
+    // console.log(message);
     return (
-
-      <section className='learn-section'>
-        <h2>
-          {this.displayHeaderMessage() }
-        </h2>
-
-          {this.toggleButtonsAndForm()}
-
-        <div className='DisplayScore'>
-          <p>
-            {`Your total score is: ${this.state.totalScore}`}
-          </p>
+      <main className="score-form">
+        <div className="DisplayFeedback">
+        {message}
         </div>
-
-        <div className='DisplayFeedback'>
-          <p>{this.state.answer && `The correct translation for ${this.state.lastWord} was ${this.state.answer} and you chose ${this.state.guess}!`}</p>
+        {displayForm}      
+        <div className="DisplayScore">
+          <p>{`Your total score is: ${this.state.totalScore}`}</p>
         </div>
-
-        <div >
-          <p>You have answered this word correctly {this.state.wordCorrectCount} times.</p>
-          <p>You have answered this word incorrectly {this.state.wordIncorrectCount} times.</p>
-        </div>
-       
-      </section>
+          <p>{`You have answered this word correctly ${this.state.wordCorrectCount} times.`}</p>
+          <p>{`You have answered this word incorrectly ${this.state.wordIncorrectCount} times.`}</p>
+      </main>
     );
   }
 }
