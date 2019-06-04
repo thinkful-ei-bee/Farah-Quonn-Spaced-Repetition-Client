@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LanguageService from '../../services/language-service'
 import { Input, Label } from '../../components/Form/Form'
 import Button from '../../components/Button/Button'
+import "../../components/App/App.css"
 
 class LearningRoute extends Component {
   state = {
@@ -20,7 +21,6 @@ class LearningRoute extends Component {
   componentDidMount() {
     LanguageService.getLanguageHead()
       .then(response => {
-        console.log(response)
         this.setState({
           currentWord: response.nextWord,
           lastWord: response.nextWord,
@@ -39,7 +39,6 @@ class LearningRoute extends Component {
 
     LanguageService.postGuess(this.state.guess)
       .then(response => {
-        console.log(response)
         if(response.isCorrect) {
           this.setState({
             correctAnswer: response.answer,
@@ -89,13 +88,13 @@ class LearningRoute extends Component {
             What's the translation for this word?
         </Label>
         <Input type='text' id='learn-guess-input' name='guess_input' 
-        onChange={this.trackUserInput}></Input>
-        <Button type="submit">Submit your answer</Button>
+        onChange={this.trackUserInput} required></Input>
+        <Button type="submit" className="btn">Submit your answer</Button>
       </form>
       )
     } else {
       return (
-        <Button type="click" onClick={this.handleNextWordButton}>Try another word!</Button>
+        <Button type="click" onClick={this.handleNextWordButton} className="btn">Try another word!</Button>
       )
     }
   }
@@ -120,28 +119,35 @@ class LearningRoute extends Component {
   }
 
   render(){
-    console.log(this.state.isCorrect)
+    let header = (this.state.hasAnswered) ?
+      <div className="DisplayFeedback">
+        {this.displayFeedbackMessage()}
+      </div>
+      :
+      <>
+      <h2>Translate the word:</h2>
+      <span>{this.state.currentWord}</span>  
+      </>
+
     return(
       <div>
-        <main>
-          <article>
-            <h2>ranslate the word:</h2>
-            <span>{this.state.currentWord}</span>
+        <main className="learning-route">
+          <article className="translateWord">
+            {header}
           </article>
-          
-          {this.displayForm()}    
 
-          <div className="DisplayFeedback">
-            {this.displayFeedbackMessage()}
-          </div>
+          <div className="answerForm">
+            {this.displayForm()} 
+          </div> 
 
           <div className="DisplayScore">
             <p>Your total score is: {this.state.totalScore}</p>
+          </div>
+
+          <div className="score-info">
             <p>You have answered this word correctly {this.state.wordCorrectCount} times.</p>
             <p>You have answered this word incorrectly {this.state.wordIncorrectCount} times.</p>
           </div>
-
-        
         </main>
       </div>
     )

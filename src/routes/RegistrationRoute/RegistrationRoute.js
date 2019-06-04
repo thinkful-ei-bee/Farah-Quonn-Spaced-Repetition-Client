@@ -16,18 +16,14 @@ class RegistrationRoute extends Component {
 
   render() {
     return (
-      <section className="registration-grid">
-        <div className="registration-grid-item side-div"></div>
-          <div className="registration-grid-item registration-content">
-          <p>
-            Practice learning a language with the spaced repetition revision technique.
-          </p>
-          <h2>Sign up</h2>
+      <section>
+        <p>
+          Practice learning a language with the spaced repetition revision technique.
+        </p>
+        <h2>Sign up</h2>
         <RegistrationForm
           onRegistrationSuccess={this.handleRegistrationSuccess}
         />
-        </div>
-        <div className="registration-grid-item side-div"></div>
       </section>
     );
   }
