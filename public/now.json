@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "alias": "farah-quonn-spaced-repetition-app",
+    "name": "farah-quonn-spaced-repetition-app",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+}
