@@ -15,8 +15,12 @@ We have incoporated Spaced Repetition into this application to help users learn 
 
 ## Tech Stack
 ES6
+
 React.JS
+
 Express.JS
+
 PostgreSQL
-[Cypress IO](https://docs.cypress.io)(Very cool automated tester....Check it out!)
+
+[Cypress IO](https://docs.cypress.io)
 
