@@ -8,7 +8,7 @@ We have incoporated Spaced Repetition into this application to help users learn 
 [https://farah-quonn-spaced-repetition-app.now.sh/register](https://farah-quonn-spaced-repetition-app.now.sh/register)
 
 ## Screenshots
-
+![Screenshots](https://i.imgur.com/tWC2GNo.png)
 ## API Documentation
 
 [Farah-Quonn-Spaced-Repetition-API](https://github.com/thinkful-ei-bee/Farah-Quonn-Spaced-Repetition-Api)
