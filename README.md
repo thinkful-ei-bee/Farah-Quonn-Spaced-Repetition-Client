@@ -5,7 +5,7 @@ A learning technique that incorporates increasing intervals of time between subs
 We have incoporated Spaced Repetition into this application to help users learn French!!!. Users will be shown a series of words, and asked to translate each one. Words, that are correctly translated are repeated with a lesser frequency, and incorrectly translated words, are repeated more frequently. An incorrect and correct count is tallied and displayed for each indiviual word, and these indivual scores are used to create a total score for the session, which is displayed on the learning page.
 
 ## Live Link
-[Live Link](https://farah-quonn-spaced-repition.sh)
+[https://farah-quonn-spaced-repition.sh](https://farah-quonn-spaced-repition.sh)
 
 ## Screenshots
 
