@@ -24,3 +24,8 @@ PostgreSQL
 
 [Cypress IO](https://docs.cypress.io)
 
+## The Team
+Farah Gustafson - Front-End Components, Services, and Testing, UI Design
+
+Quonn Bernard - Front-End Components, Services, and Testing, UI Design
+
