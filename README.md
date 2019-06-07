@@ -6,6 +6,9 @@ We have incoporated Spaced Repetition into this application to help users learn 
 
 ## Live Link
 [https://farah-quonn-spaced-repetition-app.now.sh/register](https://farah-quonn-spaced-repetition-app.now.sh/register)
+#### Note: A demo user account is provided to explore the app (you can still choose to create a new account if you wish)
+    username: demoUser321
+    password: Demouser123!
 
 ## Screenshots
 ![Screenshots](https://i.imgur.com/tWC2GNo.png)
