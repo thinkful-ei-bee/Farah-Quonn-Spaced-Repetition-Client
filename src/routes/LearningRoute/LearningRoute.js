@@ -83,14 +83,16 @@ class LearningRoute extends Component {
   displayForm() {
     if (!this.state.hasAnswered) {
       return (
-      <form onSubmit={this.handleSubmitButton}> 
-        <Label htmlFor='learn-guess-input'>
-            What's the translation for this word?
-        </Label>
-        <Input type='text' id='learn-guess-input' name='guess_input' 
-        onChange={this.trackUserInput} required></Input>
-        <Button type="submit" className="btn">Submit your answer</Button>
-      </form>
+      <fieldset>
+        <form onSubmit={this.handleSubmitButton}> 
+          <Label htmlFor='learn-guess-input'>
+              What's the translation for this word?
+          </Label>
+          <Input type='text' id='learn-guess-input' name='guess_input' 
+          onChange={this.trackUserInput} required></Input>
+          <Button type="submit" className="btn">Submit your answer</Button>
+        </form>
+      </fieldset>
       )
     } else {
       return (
@@ -131,7 +133,7 @@ class LearningRoute extends Component {
 
     return(
       <div>
-        <main className="learning-route">
+        <main className="learning-route" role="main">
           <article className="translateWord">
             {header}
           </article>

@@ -19,6 +19,7 @@ main {
     display: flex;
     align-items: center;
     padding-right: 30px;
+    font-size: 12px;
   }
   .header-menu-link {
     display: inline;
@@ -65,6 +66,9 @@ main {
   /* End Learning page styles */
   
   /* Login Page Styles */
+  fieldset{
+    border: none;
+  }
   .login-grid {
     display: grid;
     grid-template-columns: 100%;
@@ -200,7 +204,7 @@ main {
     list-style: none;
   }
   .dashboard-words p {
-    text-indent: 20px;
+    font-size: 12px;
     line-height: 8px;
   }
   .dashboard h1 {
@@ -218,8 +222,17 @@ main {
     font-size: 13px;
   }
   /* End of Dashboard Styles */
-  
+
   /* Media Queries */
+  @media (min-width: 500px) {
+    .dashboard-words p {
+      text-indent: 15px;
+      font-size: 15px;
+    }
+    .header-menu-link{
+      font-size: 18px;
+    }
+  }
   @media (min-width: 687px) {
     .LoginForm {
       border-radius: 5px;
@@ -230,7 +243,7 @@ main {
     .dashboardScore {
       top: 90px;
       right: 180px;
-    }
+    }  
   }
   
   @media (min-width: 876px) {

@@ -41,6 +41,7 @@ class RegistrationForm extends Component {
   render() {
     const { error } = this.state
     return (
+      <fieldset>
       <form
       className='RegistrationForm'
         onSubmit={this.handleSubmit}
@@ -86,7 +87,7 @@ class RegistrationForm extends Component {
             required
           />
         </div>
-        <footer>
+        <footer role="contentinfo">
           <Button type='submit' className="btn">
             Sign up
           </Button>
@@ -94,6 +95,7 @@ class RegistrationForm extends Component {
           <Link to='/login'>Already have an account?</Link>
         </footer>
       </form>
+      </fieldset>
     )
   }
 }
