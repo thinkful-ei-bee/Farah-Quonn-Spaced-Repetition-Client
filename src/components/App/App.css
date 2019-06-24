@@ -20,17 +20,22 @@ main {
     align-items: center;
     padding-right: 30px;
     font-size: 15px;
+    background: black;
+    color: white;
+  }
+  .header-menu-box a{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
   }
   .header-menu-link {
     display: inline;
     margin: 0 10px;
   }
-  .header-menu-link a {
-    font-size: 15px;
-  }
   .logo-box {
     display: flex;
     align-items: center;
+    background: black;
   }
   #logo {
     font-size: 20px;
@@ -196,12 +201,16 @@ main {
     font-size: 13px;
   }
   .dashboard-words {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     border: 1px solid black;
     width: 60%;
     margin: auto;
     margin-top: 20px;
     padding-bottom: 40px;
-    /* margin-bottom: 80px; */
+    margin-bottom: 5%;
   }
   .dashboard-words ul{
     list-style: none;
@@ -209,6 +218,10 @@ main {
   .dashboard-words p {
     font-size: 12px;
     line-height: 8px;
+  }
+  .dashboard-words .btn {
+    width: fit-content;
+    margin-left: 5%;
   }
   .dashboard h1 {
     margin-right: 8%;
@@ -219,10 +232,6 @@ main {
   .dashboard h2 {
     margin-left: 20%;
     margin-top: 40px;
-  }
-  .dashboard a {
-    margin-left: 30%;
-    font-size: 13px;
   }
   /* End of Dashboard Styles */
 
