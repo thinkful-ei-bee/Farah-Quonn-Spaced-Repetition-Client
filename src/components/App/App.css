@@ -59,9 +59,12 @@ main {
   .answer-form input, .answer-form label {
     display: block;
   }
- .answer-btn {
+ .answer-btn{
     margin: auto;
     width: fit-content;
+  }
+  .answer-btn .btn:hover {
+    cursor: pointer;
   }
   .score {
     border: 1px solid black;
@@ -232,6 +235,16 @@ main {
   /* End of Dashboard Styles */
 
   /* Media Queries */
+  @media(min-width: 500px) {
+    .answer-form input {
+      height: 25px;
+      padding: 5px;
+      font-size: 12px;
+    }
+    .answer-btn .btn {
+      font-size: 13px;
+    }
+  }
   @media (min-width: 600px) {
     .dashboard-words ul {
       font-size: 16px;
