@@ -32,37 +32,51 @@ main {
   /* End Header Component Styles */
   
   /* Learning page styles */
-  .learning-route {
-    padding-left: 20px;
-    padding-right: 20px;
+  .learning-page {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
   }
-  .translateWord {
+  .translate-word {
     border: 1px solid black;
-    height: 250px;
-    margin: auto;
-    padding-top: 50px;
+    padding: 5%;
     text-align: center;
-    line-height: 40px;
+    padding-bottom: 40px;
   }
-
-  .answerForm{
+  .answer-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+  }
+  .answer-form input {
+    border: 1px solid lightgrey;
     width: fit-content;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  .answerForm input {
-    border: 1px solid lightgrey;
+  .answer-form input, .answer-form label {
+    display: block;
+  }
+ .answer-btn {
+    margin: auto;
+    width: fit-content;
+  }
+  .score {
+    border: 1px solid black;
+    padding: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
   .DisplayScore, .score-info{
     width: fit-content;
-    margin: auto;
-    margin-top: 50px;
   }
   /* End Learning page styles */
   
   /* Login Page Styles */
   fieldset{
-    border: none;
+    border: transparent;
   }
   .login-grid {
     display: grid;
@@ -204,7 +218,8 @@ main {
   .dashboard-words ul {
     list-style-type: none;
     padding: 0;
-    line-height: 8px;
+    font-size: 14px;
+    line-height: 10px;
     padding-bottom: 8px;
   }
 
@@ -212,63 +227,15 @@ main {
     width: fit-content;
     margin: auto;
     margin-top: 10%;
-    font-size: 22px;
+    font-size: 18px;
   }
-
-    /* .dashboard{
-      position: relative;
-    }
-   .dashboardScore {
-    margin-left: 20%;
-    width: fit-content;
-    background:black;
-    color: white;
-    padding: 5px;
-    font-size: 13px;
-  }
-  .dashboard-words {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    border: 1px solid black;
-    width: 60%;
-    margin: auto;
-    margin-top: 20px;
-    padding-bottom: 40px;
-    margin-bottom: 5%;
-  }
-  .dashboard-words ul{
-    list-style: none;
-  }
-  .dashboard-words p {
-    font-size: 12px;
-    line-height: 8px;
-  }
-  .dashboard-words .btn {
-    width: fit-content;
-    margin-left: 5%;
-  }
-  .dashboard h1 {
-    margin-right: 8%;
-  }
-  .dashboard h3{
-    margin-left: 20%;
-  }
-  .dashboard h2 {
-    margin-left: 20%;
-    margin-top: 40px;
-  } */
   /* End of Dashboard Styles */
 
   /* Media Queries */
-  @media (min-width: 500px) {
-    .dashboard-words p {
-      text-indent: 15px;
-      font-size: 15px;
-    }
-    .header-menu-link{
-      font-size: 18px;
+  @media (min-width: 600px) {
+    .dashboard-words ul {
+      font-size: 16px;
+      text-indent: 20px;
     }
   }
   @media (min-width: 687px) {
@@ -278,10 +245,6 @@ main {
       width: 65%;
       padding: 15px;
     }
-    .dashboardScore {
-      top: 90px;
-      right: 180px;
-    }  
   }
   
   @media (min-width: 876px) {
