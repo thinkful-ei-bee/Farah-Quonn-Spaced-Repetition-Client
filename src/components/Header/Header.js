@@ -41,21 +41,23 @@ class Header extends Component {
 
   render() {
     return (
-      <header className=" header-grid" role="banner">
-        <div className="logo-box">
-          <h1>
-            <Link to='/' id="logo">
-              Spaced Repetition
-          </Link>
-          </h1>
-        </div>
-        <div className="header-menu-box">
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
-          <Link to='/learn'>
-              Learn
-          </Link>
+      <header className="header-grid" role="banner">
+        <div className="page-header">
+          <div className="logo-box">
+            <h1>
+              <Link to='/' id="logo">
+                Spaced Repetition
+            </Link>
+            </h1>
+          </div>
+          <div className="header-menu-box">
+          {TokenService.hasAuthToken()
+            ? this.renderLogoutLink()
+            : this.renderLoginLink()}
+            <Link to='/learn'>
+                Learn
+            </Link>
+          </div>
         </div>
       </header>
     );

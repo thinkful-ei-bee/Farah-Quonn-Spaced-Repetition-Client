@@ -5,42 +5,29 @@ main {
   /* End of main styles */
   
   /* Header Component Styles */
-  .header {
-    height: 13vh;
+  .page-header {
     background: black;
+    justify-content: space-between;
     color: white;
-  }
-  .header-grid {
-    display: grid;
-    grid-template-columns: 60% 40%;
-  }
-  .header-menu-box {
-    justify-content: flex-end;
     display: flex;
-    align-items: center;
-    padding-right: 30px;
-    font-size: 15px;
-    background: black;
-    color: white;
+    padding: 3%;
   }
-  .header-menu-box a{
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-  }
-  .header-menu-link {
-    display: inline;
-    margin: 0 10px;
-  }
+
   .logo-box {
-    display: flex;
-    align-items: center;
-    background: black;
+    font-size: 14px;
   }
-  #logo {
-    font-size: 20px;
-    margin-left: 15px;
+  .logo-box a {
     color: white;
+  }
+
+  .header-menu-box {
+    flex-direction: column;
+    text-align: right;
+    line-height: 22px;
+  }
+  .header-menu-box a {
+    color: white;
+    font-size: 17px;
   }
   /* End Header Component Styles */
   
