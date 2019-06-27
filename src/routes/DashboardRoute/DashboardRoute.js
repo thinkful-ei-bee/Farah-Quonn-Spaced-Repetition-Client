@@ -39,15 +39,24 @@ class DashboardRoute extends Component {
     let totalScore = this.state.totalScore 
 
     return (
-      <section className='dashboard'>
-        <h2>{subtitle}</h2>
-        <h1 className="dashboardScore">Total correct answers: {totalScore}</h1>
-        
-        <h3>Words to practice</h3>
-        
-        <div className="dashboard-words">
-          {this.renderWords()}
-          <Link to="/learn" className="btn">Start practicing</Link>
+      <section>
+        <div className='dashboard'>
+          <div className="words-box">
+            <h1>{subtitle}</h1>
+            <h2 className="dashboardScore">Total correct answers: {totalScore}</h2>
+            
+            <h3>Words to practice</h3>
+            
+            <div className="dashboard-words">
+              {this.renderWords()}
+            </div>
+
+            <div className="learn-btn">
+              <Link to="/learn" className="btn">Start practicing</Link>
+            </div>
+          </div>
+
+
         </div>
       </section>
     );

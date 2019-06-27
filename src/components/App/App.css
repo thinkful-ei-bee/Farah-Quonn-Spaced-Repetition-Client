@@ -176,7 +176,46 @@ main {
   /* End Registration styles */
   
   /* Dashboard Styles */
-    .dashboard{
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7%;
+  }
+
+  .words-box {
+    border: 2px solid black;
+    border: 5px solid hsl(0, 0%, 40%);
+    /* #2 */
+    padding: 5px;
+    /* #3 */
+    outline: 5px solid hsl(0, 0%, 60%);
+    width: 80%;
+    padding: 8%;
+    box-shadow:
+    0 0 0 10px hsl(0, 0%, 80%),
+    0 0 0 15px hsl(0, 0%, 90%);
+  }
+
+  .words-box h1 {
+    font-size: 28px;
+  }
+
+  .dashboard-words ul {
+    list-style-type: none;
+    padding: 0;
+    line-height: 8px;
+    padding-bottom: 8px;
+  }
+
+  .learn-btn {
+    width: fit-content;
+    margin: auto;
+    margin-top: 10%;
+    font-size: 22px;
+  }
+
+    /* .dashboard{
       position: relative;
     }
    .dashboardScore {
@@ -219,7 +258,7 @@ main {
   .dashboard h2 {
     margin-left: 20%;
     margin-top: 40px;
-  }
+  } */
   /* End of Dashboard Styles */
 
   /* Media Queries */
